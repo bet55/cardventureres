@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfj2gk3ybevb7"]
+
+[ext_resource type="Script" uid="uid://bxb6eo80osyq5" path="res://scripts/equipment.gd" id="1_1mkdg"]
+[ext_resource type="Texture2D" uid="uid://d1hhoeoxvk71g" path="res://sprites/blank_card.png" id="1_dusko"]
+[ext_resource type="PackedScene" uid="uid://b4edlx22o3egt" path="res://scenes/inventory_slot.tscn" id="3_p6cdt"]
+
+[node name="Equipment" type="Node2D"]
+script = ExtResource("1_1mkdg")
+
+[node name="TestCard" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_dusko")
+
+[node name="ShowEquipButton" type="Button" parent="."]
+offset_left = -25.0
+offset_top = 30.0
+offset_right = 27.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 8
+text = "equip"
+
+[node name="InventorySlot1" parent="." instance=ExtResource("3_p6cdt")]
+position = Vector2(-80, -20)
+
+[node name="InventorySlot2" parent="." instance=ExtResource("3_p6cdt")]
+position = Vector2(0, -130)
+
+[node name="InventorySlot3" parent="." instance=ExtResource("3_p6cdt")]
+position = Vector2(80, -20)
+
+[connection signal="pressed" from="ShowEquipButton" to="." method="_on_show_equip_button_pressed"]

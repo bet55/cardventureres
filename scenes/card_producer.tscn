@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dop2e00vvy08q"]
+
+[ext_resource type="Script" uid="uid://b20tnixoagtk0" path="res://scripts/components/card_producer.gd" id="1_hd1a8"]
+
+[node name="CardProducer" type="Node2D"]
+script = ExtResource("1_hd1a8")

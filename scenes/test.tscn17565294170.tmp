@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqyih1vivibjv"]
+
+[ext_resource type="Script" uid="uid://bl0igwli47pav" path="res://scripts/test_scene_delete_this.gd" id="1_trrex"]
+[ext_resource type="PackedScene" uid="uid://cd27ykbtbi3gd" path="res://scenes/card_holder.tscn" id="2_i82ci"]
+[ext_resource type="PackedScene" uid="uid://lbgm7pj2bmv" path="res://scenes/deck.tscn" id="3_t23kd"]
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_trrex")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -23.0
+offset_top = -17.0
+offset_right = 980.0
+offset_bottom = 558.0
+mouse_filter = 1
+color = Color(0.0787413, 0.412921, 0.309677, 1)
+
+[node name="CardHolder" parent="." instance=ExtResource("2_i82ci")]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 908.0
+offset_top = 471.0
+offset_right = 948.0
+offset_bottom = 502.0
+text = "lega"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 888.0
+offset_top = 505.0
+offset_right = 952.0
+offset_bottom = 536.0
+text = "normal"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 139.0
+offset_top = 505.0
+offset_right = 184.0
+offset_bottom = 536.0
+text = "hero"
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 885.0
+offset_top = 437.0
+offset_right = 952.0
+offset_bottom = 468.0
+text = "remove"
+
+[node name="Button5" type="Button" parent="."]
+offset_left = 91.0
+offset_top = 505.0
+offset_right = 136.0
+offset_bottom = 536.0
+text = "skill"
+
+[node name="Button6" type="Button" parent="."]
+offset_left = 44.0
+offset_top = 505.0
+offset_right = 89.0
+offset_bottom = 536.0
+text = "mod"
+
+[node name="Button7" type="Button" parent="."]
+offset_left = 3.0
+offset_top = 505.0
+offset_right = 42.0
+offset_bottom = 536.0
+text = "loot"
+
+[node name="Button8" type="Button" parent="."]
+offset_left = 187.0
+offset_top = 505.0
+offset_right = 246.0
+offset_bottom = 536.0
+text = "potion"
+
+[node name="Button9" type="Button" parent="."]
+offset_left = 249.0
+offset_top = 505.0
+offset_right = 293.0
+offset_bottom = 536.0
+text = "mob"
+
+[node name="MyDeck" parent="." instance=ExtResource("3_t23kd")]
+position = Vector2(92, 263)
+cards = [60100, 60100, 60100, 60100, 60100, 70200, 70200, 70200, 70200, 70200, 80100, 80100, 80100, 80100, 80100]
+is_friendly = true
+max_speed = 1
+
+[node name="Button10" type="Button" parent="."]
+offset_left = 891.0
+offset_top = 402.0
+offset_right = 952.0
+offset_bottom = 433.0
+text = "restart"
+
+[node name="EnemyDeck" parent="." instance=ExtResource("3_t23kd")]
+position = Vector2(766, 280)
+cards = [30100, 30100, 30100, 30100, 30100]
+max_speed = 4000
+
+[node name="Button11" type="Button" parent="."]
+offset_left = 296.0
+offset_top = 505.0
+offset_right = 366.0
+offset_bottom = 536.0
+text = "weapon"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="Button7" to="." method="_on_button_7_pressed"]
+[connection signal="pressed" from="Button8" to="." method="_on_button_8_pressed"]
+[connection signal="pressed" from="Button9" to="." method="_on_button_9_pressed"]
+[connection signal="pressed" from="Button10" to="." method="_on_button_10_pressed"]
+[connection signal="pressed" from="Button11" to="." method="_on_button_11_pressed"]

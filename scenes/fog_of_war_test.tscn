@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ywn83o2381r1"]
+
+[ext_resource type="Script" uid="uid://djwvaxm6movsr" path="res://scripts/fog_of_war_test.gd" id="1_oai28"]
+[ext_resource type="Texture2D" uid="uid://c0sjjc5yadrlw" path="res://assets/5zlkur1f7v931.png" id="2_1c618"]
+[ext_resource type="PackedScene" uid="uid://cd27ykbtbi3gd" path="res://scenes/card_holder.tscn" id="3_303on"]
+[ext_resource type="PackedScene" uid="uid://5cowigden704" path="res://scenes/camera_follower.tscn" id="4_rwxyx"]
+[ext_resource type="PackedScene" uid="uid://dcs3ap031tvja" path="res://scenes/fog_of_war.tscn" id="5_goq00"]
+
+[node name="FogOfWarTest" type="Node2D"]
+script = ExtResource("1_oai28")
+
+[node name="Map" type="Sprite2D" parent="."]
+position = Vector2(-72, -956)
+texture = ExtResource("2_1c618")
+
+[node name="Map2" type="Sprite2D" parent="."]
+position = Vector2(-31, 1144)
+rotation = -3.14159
+texture = ExtResource("2_1c618")
+
+[node name="CardHolder" parent="." instance=ExtResource("3_303on")]
+
+[node name="CameraFollower" parent="." instance=ExtResource("4_rwxyx")]
+position = Vector2(81, -32)
+min_zoom = 0.01
+max_zoom = 200.0
+
+[node name="FogOfWar" parent="." node_paths=PackedStringArray("camera", "fog") instance=ExtResource("5_goq00")]
+camera = NodePath("../CameraFollower")
+fog = NodePath("Polygon2D")
+min_distance = 45.0
+randomness = 12.0
+reveal_time = 0.5
+reveal_radius_multi = 1.0
+
+[node name="Polygon2D" type="Polygon2D" parent="FogOfWar"]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-1189, 2247, -1229, -2114, 1069, -2064, 1039, 2301)
+
+[node name="AllowedArea" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(465, -215, 352, -429, 795, -383, 883, -78, 611, 89, 97, 85, -28, 273, -262, 323, -692, 319, -771, 403, -989, 357, -943, 186, -667, 89, -208, 98, -15, -115, 285, -140, 498, -119, 649, -174)

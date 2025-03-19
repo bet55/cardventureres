@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d087r03tpuwna"]
+
+[ext_resource type="Script" uid="uid://dm2m1ke6jrvcu" path="res://scripts/components/crafter.gd" id="1_fvc8y"]
+
+[node name="Crafter" type="Node2D"]
+script = ExtResource("1_fvc8y")

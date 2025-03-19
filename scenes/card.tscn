@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2b15hre1vy6e"]
+
+[ext_resource type="Script" uid="uid://dg6naj4kg4d7t" path="res://scripts/components/card.gd" id="1_4i7yx"]
+[ext_resource type="Texture2D" uid="uid://cgiggmn8l1csn" path="res://sprites/test_card.png" id="2_es4mb"]
+[ext_resource type="Material" uid="uid://ic1haqg73ps2" path="res://materials/white_to_rainbow.tres" id="3_jhgda"]
+[ext_resource type="Texture2D" uid="uid://c0a5vgb7wnlh1" path="res://sprites/card_frame.png" id="4_wdgvg"]
+[ext_resource type="Shader" uid="uid://cg7x6bllwsxnk" path="res://shaders/2d_persp_and_white_to_rainb.gdshader" id="5_jsnhf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktk2u"]
+resource_local_to_scene = true
+shader = ExtResource("5_jsnhf")
+shader_parameter/target_color = Color(0.298039, 0.388235, 0.878431, 1)
+shader_parameter/color_threshold = 0.0
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sy11y"]
+size = Vector2(60, 92)
+
+[node name="Card" type="Node2D" groups=["card"]]
+script = ExtResource("1_4i7yx")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="EffectIconContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = -72.0
+offset_right = 35.0
+offset_bottom = -53.0
+alignment = 1
+
+[node name="CardWithShadow" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="CardWithShadow"]
+visible = false
+modulate = Color(0, 0, 0, 0.352941)
+position = Vector2(0, 2)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_es4mb")
+
+[node name="Sprite" type="Sprite2D" parent="CardWithShadow"]
+material = ExtResource("3_jhgda")
+texture = ExtResource("2_es4mb")
+
+[node name="Description" type="Label" parent="CardWithShadow/Sprite"]
+offset_left = -33.0
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "description"
+autowrap_mode = 3
+
+[node name="CardHighlight" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_wdgvg")
+
+[node name="EnlargedSprite" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_ktk2u")
+
+[node name="InputBlocker" type="ColorRect" parent="."]
+offset_left = -35.0
+offset_top = -52.0
+offset_right = 35.0
+offset_bottom = 52.0
+color = Color(1, 1, 1, 0)
+
+[node name="ConnectedCards" type="Node2D" parent="."]
+
+[node name="CurrentStats" type="Label" parent="."]
+visible = false
+offset_left = 41.0
+offset_top = -48.0
+offset_right = 71.0
+offset_bottom = -25.0
+text = "test"
+
+[node name="StepOnFogArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StepOnFogArea"]
+shape = SubResource("RectangleShape2D_sy11y")
+
+[node name="AppliedEffects" type="Node2D" parent="."]
+
+[connection signal="mouse_entered" from="InputBlocker" to="." method="_on_input_blocker_mouse_entered"]
+[connection signal="mouse_exited" from="InputBlocker" to="." method="_on_input_blocker_mouse_exited"]

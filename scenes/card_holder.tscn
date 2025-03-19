@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd27ykbtbi3gd"]
+
+[ext_resource type="Script" uid="uid://cxtfv36loo8jy" path="res://scripts/card_holder.gd" id="1_hetf0"]
+
+[node name="CardHolder" type="Node2D" groups=["CardHolder"]]
+script = ExtResource("1_hetf0")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4edlx22o3egt"]
+
+[ext_resource type="Texture2D" uid="uid://d1hhoeoxvk71g" path="res://sprites/blank_card.png" id="1_bxqf6"]
+[ext_resource type="Script" uid="uid://cdcolywc5dk6i" path="res://scripts/inventory_slot.gd" id="1_hddt5"]
+[ext_resource type="PackedScene" uid="uid://hgxycof3aq14" path="res://scenes/connector.tscn" id="2_hddt5"]
+[ext_resource type="Texture2D" uid="uid://c0a5vgb7wnlh1" path="res://sprites/card_frame.png" id="4_bbig2"]
+
+[node name="InventorySlot" type="Node2D"]
+script = ExtResource("1_hddt5")
+
+[node name="SlotSprite" type="Sprite2D" parent="."]
+modulate = Color(0.439049, 0.439049, 0.439049, 1)
+texture = ExtResource("1_bxqf6")
+
+[node name="SlotName" type="Label" parent="."]
+offset_left = -35.0
+offset_top = -54.0
+offset_right = 35.0
+offset_bottom = -31.0
+text = "slot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Connector" parent="." instance=ExtResource("2_hddt5")]
+
+[node name="ConnectedCards" type="Node2D" parent="."]
+
+[node name="SlotHighlight" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_bbig2")

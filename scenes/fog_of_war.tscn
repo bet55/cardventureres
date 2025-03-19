@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcs3ap031tvja"]
+
+[ext_resource type="Script" uid="uid://b3y5rfjq2u1bt" path="res://scripts/fog_of_war.gd" id="1_52d7s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3fhss"]
+radius = 202.299
+
+[node name="FogOfWar" type="Node2D"]
+script = ExtResource("1_52d7s")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3fhss")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

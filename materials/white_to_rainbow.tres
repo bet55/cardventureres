@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ic1haqg73ps2"]
+
+[ext_resource type="Shader" uid="uid://btrqjbsv2une2" path="res://shaders/white_to_rainbow.gdshader" id="1_hhqcw"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_hhqcw")
+shader_parameter/target_color = Color(0.298039, 0.388235, 0.878431, 1)
+shader_parameter/color_threshold = 0.0

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwry58tt7rhq7"]
+
+[ext_resource type="Script" uid="uid://d4aneex51nfd" path="res://scripts/components/auto_main_effect.gd" id="1_rb7gg"]
+
+[node name="AutoMainEffect" type="Node2D"]
+script = ExtResource("1_rb7gg")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2av11hiwbaxq"]
+
+[ext_resource type="Texture2D" uid="uid://cjekvsvng8l2p" path="res://assets/bag.png" id="1_6bjnb"]
+[ext_resource type="Script" uid="uid://366is732uncs" path="res://scripts/bag.gd" id="1_8dtae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dtae"]
+size = Vector2(709, 91)
+
+[node name="Bag" type="Node2D"]
+script = ExtResource("1_8dtae")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 100.0
+offset_right = 850.0
+offset_bottom = 130.0
+alignment = 1
+
+[node name="BagButton" type="TextureButton" parent="."]
+offset_top = 28.0
+offset_right = 64.0
+offset_bottom = 92.0
+texture_normal = ExtResource("1_6bjnb")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = 100.0
+offset_right = 850.0
+offset_bottom = 130.0
+color = Color(0.239216, 0.239216, 0.239216, 0.513726)
+
+[node name="BagArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BagArea2D"]
+position = Vector2(474.5, 65.5)
+shape = SubResource("RectangleShape2D_8dtae")
+
+[connection signal="pressed" from="BagButton" to="." method="_on_bag_button_pressed"]
+[connection signal="area_entered" from="BagArea2D" to="." method="_on_bag_area_2d_area_entered"]

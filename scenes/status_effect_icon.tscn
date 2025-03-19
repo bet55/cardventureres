@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://hq22km7dmi6w"]
+
+[ext_resource type="Script" uid="uid://c0avwwp7wt63g" path="res://scripts/status_effect_icon.gd" id="1_kw860"]
+[ext_resource type="Texture2D" uid="uid://cl0pfsc70fdwi" path="res://assets/burn_icon.png" id="2_c8kto"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gowu1"]
+radius = 7.07107
+
+[node name="StatusEffectIcon" type="TextureRect"]
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = 7.0
+texture = ExtResource("2_c8kto")
+script = ExtResource("1_kw860")
+
+[node name="DurationLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 22.0
+offset_bottom = 26.0
+text = "1"
+
+[node name="DescriptionLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -44.0
+offset_top = -29.0
+offset_right = 43.0
+offset_bottom = -6.0
+text = "description"
+
+[node name="MouseHoverArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseHoverArea"]
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_gowu1")
+
+[connection signal="mouse_entered" from="MouseHoverArea" to="." method="_on_mouse_hover_area_mouse_entered"]
+[connection signal="mouse_exited" from="MouseHoverArea" to="." method="_on_mouse_hover_area_mouse_exited"]

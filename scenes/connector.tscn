@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://hgxycof3aq14"]
+
+[ext_resource type="Script" uid="uid://cp6v88kq8ufdp" path="res://scripts/components/connector.gd" id="1_q3jbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbcjy"]
+size = Vector2(44, 66)
+
+[node name="Connector" type="Area2D" groups=["connector"]]
+script = ExtResource("1_q3jbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rbcjy")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
