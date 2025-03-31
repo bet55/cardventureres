@@ -21,6 +21,7 @@ GlobalSignals="*res://scripts/globals/global_signals.gd"
 CurrentEnemiesAndFriends="*res://scripts/globals/current_enemies_and_friends.gd"
 CardLibrary="*res://scripts/globals/card_library.gd"
 Recipies="*res://scripts/globals/recipies.gd"
+GlobalStuff="*res://scripts/globals/global_stuff.gd"
 
 [display]
 
@@ -53,6 +54,8 @@ right_button={
 
 2d_physics/layer_1="clouds"
 2d_physics/layer_2="cloud revealer"
+2d_physics/layer_3="connector"
+2d_physics/layer_4="bag"
 
 [rendering]
 

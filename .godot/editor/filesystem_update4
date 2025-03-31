@@ -6,6 +6,10 @@ res://materials/white_to_rainbow.tres
 res://shaders/2d_persp_and_white_to_rainb.gdshader
 res://shaders/2dperspective.gdshader
 res://shaders/fog_of_war_test.gdshader
+res://scripts/bag.gd
 res://scenes/bag.tscn
 res://scenes/card.tscn
 res://scenes/connector.tscn
+res://scripts/components/card.gd
+res://scenes/card_holder.tscn
+res://scripts/components/connector.gd

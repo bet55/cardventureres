@@ -18,7 +18,6 @@ func _on_button_3_pressed() -> void:
 	card_holder.add_child(card)
 	card.global_position = get_viewport_rect().get_center()
 	card.last_pos = card.global_position
-	card.card_holder = card_holder
 
 
 func _on_button_4_pressed() -> void:
@@ -31,7 +30,6 @@ func _on_button_5_pressed() -> void:
 	card_holder.add_child(card)
 	card.global_position = get_viewport_rect().get_center()
 	card.last_pos = card.global_position
-	card.card_holder = card_holder
 
 
 func _on_button_6_pressed() -> void:
@@ -39,7 +37,6 @@ func _on_button_6_pressed() -> void:
 	card_holder.add_child(card)
 	card.global_position = get_viewport_rect().get_center()
 	card.last_pos = card.global_position
-	card.card_holder = card_holder
 
 
 func _on_button_7_pressed() -> void:
@@ -47,7 +44,6 @@ func _on_button_7_pressed() -> void:
 	card_holder.add_child(card)
 	card.global_position = get_viewport_rect().get_center()
 	card.last_pos = card.global_position
-	card.card_holder = card_holder
 
 
 func _on_button_8_pressed() -> void:
@@ -55,7 +51,6 @@ func _on_button_8_pressed() -> void:
 	card_holder.add_child(card)
 	card.global_position = get_viewport_rect().get_center()
 	card.last_pos = card.global_position
-	card.card_holder = card_holder
 
 
 func _on_button_9_pressed() -> void:
@@ -63,7 +58,6 @@ func _on_button_9_pressed() -> void:
 	card_holder.add_child(card)
 	card.global_position = get_viewport_rect().get_center()
 	card.last_pos = card.global_position
-	card.card_holder = card_holder
 
 
 func _on_button_10_pressed() -> void:
@@ -75,4 +69,3 @@ func _on_button_11_pressed() -> void:
 	card_holder.add_child(card)
 	card.global_position = get_viewport_rect().get_center()
 	card.last_pos = card.global_position
-	card.card_holder = card_holder

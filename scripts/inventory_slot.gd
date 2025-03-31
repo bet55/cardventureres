@@ -19,7 +19,6 @@ var card_holder = null
 
 
 func switch_highlight():
-	card_holder = get_parent().get_parent().card_holder #в рэди это никак не работает, без этого коннектор не найдет кард холдер для шмота
 	if slot_highlight.visible:
 		slot_highlight.visible = false
 	else:

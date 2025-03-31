@@ -13,7 +13,7 @@ func _on_card_played(target_card):
 	if Recipies.RECIPIES.has(key):
 		valid_craft_combined.emit(Recipies.RECIPIES.get(key))
 		var card = CardFabric.create_card(Recipies.RECIPIES.get(key))
-		get_parent().get_parent().add_child(card)
+		GlobalStuff.current_card_holder.add_child(card)
 		card.global_position = get_viewport_rect().get_center()
 		card.last_pos = card.global_position
 		for card_to_remove in get_parent().connected_cards.get_children():

@@ -18,7 +18,7 @@ func play_produce_animation(card):
 func produce_card(producer):
 	for card in cards_to_produce:
 		var new_card = CardFabric.create_card(card)
-		get_parent().get_parent().add_child(new_card)
+		GlobalStuff.current_card_holder.add_child(new_card)
 		new_card.global_position = get_parent().global_position
 		play_produce_animation(new_card)
 		new_card.last_pos = new_card.global_position

@@ -9,29 +9,30 @@ size = Vector2(709, 91)
 [node name="Bag" type="Node2D"]
 script = ExtResource("1_8dtae")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 100.0
-offset_right = 850.0
-offset_bottom = 130.0
-alignment = 1
+[node name="BagArea2D" type="Area2D" parent="." groups=["connector"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BagArea2D"]
+position = Vector2(422, 0)
+shape = SubResource("RectangleShape2D_8dtae")
 
 [node name="BagButton" type="TextureButton" parent="."]
-offset_top = 28.0
-offset_right = 64.0
-offset_bottom = 92.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture_normal = ExtResource("1_6bjnb")
 
 [node name="Background" type="ColorRect" parent="."]
-offset_left = 100.0
-offset_right = 850.0
-offset_bottom = 130.0
+offset_left = 47.0
+offset_top = -64.0
+offset_right = 797.0
+offset_bottom = 66.0
 color = Color(0.239216, 0.239216, 0.239216, 0.513726)
 
-[node name="BagArea2D" type="Area2D" parent="."]
+[node name="Cards" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BagArea2D"]
-position = Vector2(474.5, 65.5)
-shape = SubResource("RectangleShape2D_8dtae")
-
-[connection signal="pressed" from="BagButton" to="." method="_on_bag_button_pressed"]
 [connection signal="area_entered" from="BagArea2D" to="." method="_on_bag_area_2d_area_entered"]
+[connection signal="area_exited" from="BagArea2D" to="." method="_on_bag_area_2d_area_exited"]
+[connection signal="pressed" from="BagButton" to="." method="_on_bag_button_pressed"]

@@ -1,14 +1,37 @@
 extends Node2D
 
+@onready var bag_area_2d: Area2D = $BagArea2D
+@onready var background: ColorRect = $Background
+@onready var cards: Node2D = $Cards
+
+
 const OPEN_OFFSET = Vector2(750, 0)
 const OPEN_TIME = 0.7
+const CARD_OFFSET = 64 #отступ по х между картами
 const ALLOWED_CARDS = [
 	"loot",
 ]
 
 var close_spot = Vector2()
+var cards_in_bag = []
 
 var is_open = false
+
+
+func reposition_cards():
+	var center = background.get_rect().get_center()
+	var start = Vector2(center.x - CARD_OFFSET * 5, center.y)
+	var cards_in_bag = cards.get_children()
+	for i in range(cards.get_child_count()):
+		cards_in_bag[i].position = Vector2(start.x + CARD_OFFSET * i, start.y)
+		cards_in_bag[i].last_pos = cards_in_bag[i].position
+	
+
+func add_card(card):
+	card.is_in_bag = true
+	cards_in_bag.append(card.card_id)
+	cards.add_child(card)
+	reposition_cards()
 
 
 func _ready() -> void:
@@ -28,5 +51,34 @@ func _on_bag_button_pressed() -> void:
 
 
 func _on_bag_area_2d_area_entered(area: Area2D) -> void:
-	if is_open and area.is_in_group("connector") and area.get_parent().card_type in ALLOWED_CARDS:
-		print("works")
+	var card = area.get_parent()
+	if card.card_type in ALLOWED_CARDS:
+		card.card_layed_down.connect(Callable(self, "_on_card_layed_down"))
+		card.card_picked_up.connect(Callable(self, "_on_card_picked_up"))
+
+
+func _on_bag_area_2d_area_exited(area: Area2D) -> void:
+	var card = area.get_parent()
+	if card.card_type in ALLOWED_CARDS:
+		card.card_layed_down.disconnect(Callable(self, "_on_card_layed_down"))
+		card.card_picked_up.disconnect(Callable(self, "_on_card_picked_up"))
+		if card in cards.get_children() and card.is_dragging:
+			card.reparent(GlobalStuff.current_card_holder)
+			card.global_position = get_global_mouse_position()
+			card.last_pos = card.global_position
+			cards_in_bag.remove_at(cards_in_bag.find(card.card_id))
+			card.is_in_bag = false
+
+
+func _on_card_layed_down(card):
+	if card in cards.get_children():
+		reposition_cards()
+		return
+	card.get_parent().remove_child(card)
+	add_card(card)
+	print(cards_in_bag)
+
+
+func _on_card_picked_up(card):
+	if card in cards.get_children():
+		cards.move_child(card, cards.get_child_count())

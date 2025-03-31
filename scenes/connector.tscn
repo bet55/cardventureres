@@ -6,6 +6,8 @@
 size = Vector2(44, 66)
 
 [node name="Connector" type="Area2D" groups=["connector"]]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_q3jbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

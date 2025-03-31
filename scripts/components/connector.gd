@@ -18,7 +18,9 @@ func connect_cards():
 	apllying_card.is_connected = true
 	apllying_card.connected_to = target_card
 	on_apply_effect.call(apllying_card, target_card) #вызываем перед добавлением к карте, чтобы два гэт парент давали кард холдер
-	apllying_card.get_parent().remove_child(apllying_card) #удаляем из кардхолдера
+	GlobalStuff.current_card_holder.remove_child(apllying_card) #удаляем из кардхолдера
+	apllying_card.position = Vector2.ZERO
+	apllying_card.position = Vector2.ZERO
 	target_card.connected_cards.add_child(apllying_card) #добавляем к таргет карте
 	for card in apllying_card.connected_cards.get_children():
 		apllying_card.connected_cards.remove_child(card)
@@ -31,10 +33,7 @@ func disconnect_cards(card, disconnect_from):
 	card.is_connected = false
 	var after_disconnect_pos = card.global_position
 	disconnect_from.connected_cards.remove_child(card) #остоединяем о ткарты
-	if disconnect_from.card_holder != null:
-		disconnect_from.card_holder.add_child(card) #если указали карте ссылку на кард холдер то пользуемся
-	else:
-		disconnect_from.get_parent().add_child(card) #кладем вкардхолдер по старинке
+	GlobalStuff.current_card_holder.add_child(card) #кладем вкардхолдер
 	if disconnect_from.mod_cards.has(card):
 		disconnect_from.mod_cards.remove_at(disconnect_from.mod_cards.find(card)) #надеемся на уникальность объектов
 	card.global_position = after_disconnect_pos
@@ -48,7 +47,8 @@ func _on_area_entered(area: Area2D) -> void:
 				ov_area.is_in_group("connector") and 
 				!ov_area.get_parent().is_dragging and 
 				!ov_area.get_parent().is_connected and 
-				type in ov_area.allowed_connectors
+				type in ov_area.allowed_connectors and 
+				!ov_area.get_parent().is_in_bag
 				):
 				highlighted_card = ov_area.get_parent()
 				highlighted_connector = ov_area

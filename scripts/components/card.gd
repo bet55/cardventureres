@@ -47,19 +47,21 @@ var equipment = null
 var pick_up_position = null #чтобы класть карту обратно, если ходим куда нельзя
 var allowed_area = null #зона на карте по которой можно ходить
 var connected_to = null #к чему пристегнута карта
-var card_holder = null
 var mod_cards = [] #карты моды, тк они будут прикреплены к основной карте, надо бы их удалять как то при использовании + теперь их абилки колятся через них
 var card_texture #какую картинку поставить в рэди
 var card_description #описание в рэди
 var card_type = null #для дебага
 var card_id = null #для рецептов
 var main_effect: Callable #для доступа к основной абилке карты
+var bag = null #чтобы лежать в сумочке
 
 var is_dragging = false
 var is_enlarged = false
 var is_mouse_on_top = false
 var is_connected = false
 var is_uninteractable = false
+var is_on_bag = false
+var is_in_bag = false
 
 signal card_picked_up #отправляет себя аргументом
 signal card_layed_down #отправляет себя аргументом
@@ -185,7 +187,10 @@ func _process(delta):
 		enlarged_sprite.material.set_shader_parameter("y_rot", clamp(rad_to_deg(mouse_pos.x * MOUSE_POS_TO_ANGLE_SCALE), -MAX_VIEW_ANGLE, MAX_VIEW_ANGLE))
 	
 	if is_connected:
-		global_position = connected_to.global_position + Vector2(0, 36) * (get_index(true) + 1)
+		if connected_to.card_type == "bag":
+			pass
+		else:
+			global_position = connected_to.global_position + Vector2(0, 36) * (get_index(true) + 1)
 
 
 func _input(event):

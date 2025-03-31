@@ -1,14 +1,14 @@
+Node2D
+Control
 CollisionShape2D
 Area2D
+Camera2D
 ColorRect
 TextureRect
 TextureButton
 HBoxContainer
 Button
-Camera2D
 Label
 Sprite2D
-Control
-Node2D
 Polygon2D
 VisibleOnScreenEnabler2D
