@@ -7,9 +7,11 @@ extends Node2D
 
 const OPEN_OFFSET = Vector2(750, 0)
 const OPEN_TIME = 0.7
+const MOVE_IN_BAG_TIME = 0.1
 const CARD_OFFSET = 64 #отступ по х между картами
 const ALLOWED_CARDS = [
 	"loot",
+	"consumable",
 ]
 
 var close_spot = Vector2()
@@ -23,14 +25,14 @@ func reposition_cards():
 	var start = Vector2(center.x - CARD_OFFSET * 5, center.y)
 	var cards_in_bag = cards.get_children()
 	for i in range(cards.get_child_count()):
-		cards_in_bag[i].position = Vector2(start.x + CARD_OFFSET * i, start.y)
+		var tween = create_tween()
+		tween.tween_property(cards_in_bag[i], "position", Vector2(start.x + CARD_OFFSET * i, start.y), MOVE_IN_BAG_TIME)
 		cards_in_bag[i].last_pos = cards_in_bag[i].position
 	
 
 func add_card(card):
 	card.is_in_bag = true
 	cards_in_bag.append(card.card_id)
-	cards.add_child(card)
 	reposition_cards()
 
 
@@ -64,17 +66,20 @@ func _on_bag_area_2d_area_exited(area: Area2D) -> void:
 		card.card_picked_up.disconnect(Callable(self, "_on_card_picked_up"))
 		if card in cards.get_children() and card.is_dragging:
 			card.reparent(GlobalStuff.current_card_holder)
-			card.global_position = get_global_mouse_position()
 			card.last_pos = card.global_position
 			cards_in_bag.remove_at(cards_in_bag.find(card.card_id))
 			card.is_in_bag = false
 
 
 func _on_card_layed_down(card):
+	for i in range(cards.get_child_count()):
+		if card.global_position.x > cards.get_children()[i].global_position.x:
+			cards.move_child(card, i)
+			
 	if card in cards.get_children():
 		reposition_cards()
 		return
-	card.get_parent().remove_child(card)
+	card.reparent(cards)
 	add_card(card)
 	print(cards_in_bag)
 
