@@ -9,11 +9,11 @@ var DESCRIPTION = "every " + str(MAX_SPEED) + " turns deals " + str(DAMAGE) + " 
 
 
 #тут был баг когда ближайшая цель не нул, а цель нул
-var main_effect = func main_effect(mob):
+func main_effect(apllying_card, target_card):
 	var closest_target = CurrentEnemiesAndFriends.get_current_friendly().pick_random()
 	for target in CurrentEnemiesAndFriends.get_current_friendly():
 		if target != null and closest_target != null:
-			if target.global_position.distance_to(mob.global_position) < closest_target.global_position.distance_to(mob.global_position):
+			if target.global_position.distance_to(apllying_card.global_position) < closest_target.global_position.distance_to(apllying_card.global_position):
 				closest_target = target
 	if closest_target != null:
 		closest_target.took_damage.emit(DAMAGE)

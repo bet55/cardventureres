@@ -6,7 +6,7 @@ extends Node2D
 @onready var connector: Area2D = $Connector
 @onready var slot_highlight: Sprite2D = $SlotHighlight
 
-const TYPE = "door"
+#const TYPE = "door"
 const ALLOWED_CONNECTORS = [
 	"hero",
 ]
@@ -16,6 +16,8 @@ var mod_cards = []
 var is_dragging = false
 var is_connected = false
 var card_holder = null
+var is_in_bag = false
+var card_type = "door"
 #для работы коннектора
 
 

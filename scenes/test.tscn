@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqyih1vivibjv"]
+[gd_scene load_steps=6 format=3 uid="uid://dqyih1vivibjv"]
 
 [ext_resource type="Script" uid="uid://bl0igwli47pav" path="res://scripts/test_scene_delete_this.gd" id="1_trrex"]
 [ext_resource type="PackedScene" uid="uid://cd27ykbtbi3gd" path="res://scenes/card_holder.tscn" id="2_i82ci"]
+[ext_resource type="PackedScene" uid="uid://bllkngkpxfxkm" path="res://scenes/door.tscn" id="2_j5jx5"]
 [ext_resource type="PackedScene" uid="uid://lbgm7pj2bmv" path="res://scenes/deck.tscn" id="3_t23kd"]
 [ext_resource type="PackedScene" uid="uid://b2av11hiwbaxq" path="res://scenes/bag.tscn" id="4_74lek"]
 
@@ -15,6 +16,10 @@ offset_right = 980.0
 offset_bottom = 558.0
 mouse_filter = 1
 color = Color(0.0787413, 0.412921, 0.309677, 1)
+
+[node name="Door" parent="." instance=ExtResource("2_j5jx5")]
+position = Vector2(846, 86)
+scene_path = "uid://ywn83o2381r1"
 
 [node name="Bag" parent="." instance=ExtResource("4_74lek")]
 position = Vector2(919, 401)

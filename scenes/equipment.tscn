@@ -21,11 +21,14 @@ text = "equip"
 
 [node name="InventorySlot1" parent="." instance=ExtResource("3_p6cdt")]
 position = Vector2(-80, -20)
+slot_index = 1
 
 [node name="InventorySlot2" parent="." instance=ExtResource("3_p6cdt")]
 position = Vector2(0, -130)
+slot_index = 2
 
 [node name="InventorySlot3" parent="." instance=ExtResource("3_p6cdt")]
 position = Vector2(80, -20)
+slot_index = 3
 
 [connection signal="pressed" from="ShowEquipButton" to="." method="_on_show_equip_button_pressed"]

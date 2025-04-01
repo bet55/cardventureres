@@ -33,11 +33,16 @@ func reposition_cards():
 func add_card(card):
 	card.is_in_bag = true
 	cards_in_bag.append(card.card_id)
+	GlobalStuff.cards_in_bag = cards_in_bag
 	reposition_cards()
 
 
 func _ready() -> void:
 	close_spot = global_position
+	for card_id in GlobalStuff.cards_in_bag:
+		var new_card = CardFabric.create_card(card_id)
+		cards.add_child(new_card)
+		add_card(new_card)
 
 
 func _on_bag_button_pressed() -> void:

@@ -11,7 +11,6 @@ func _ready() -> void:
 	card_holder.add_child(card)
 	card.global_position = camera_follower.global_position
 	card.last_pos = card.global_position
-	card.z_index += 1
 	card.allowed_area = allowed_area
 
 	camera_follower.connect_camera(card)

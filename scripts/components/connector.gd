@@ -3,6 +3,7 @@ extends Area2D
 var type
 var allowed_connectors
 var on_apply_effect: Callable
+var on_remove_effect: Callable
 
 var highlighted_card = null
 var highlighted_connector = null
@@ -20,7 +21,6 @@ func connect_cards():
 	on_apply_effect.call(apllying_card, target_card) #вызываем перед добавлением к карте, чтобы два гэт парент давали кард холдер
 	GlobalStuff.current_card_holder.remove_child(apllying_card) #удаляем из кардхолдера
 	apllying_card.position = Vector2.ZERO
-	apllying_card.position = Vector2.ZERO
 	target_card.connected_cards.add_child(apllying_card) #добавляем к таргет карте
 	for card in apllying_card.connected_cards.get_children():
 		apllying_card.connected_cards.remove_child(card)
@@ -30,6 +30,7 @@ func connect_cards():
 
 
 func disconnect_cards(card, disconnect_from):
+	on_remove_effect.call(card, disconnect_from)
 	card.is_connected = false
 	var after_disconnect_pos = card.global_position
 	disconnect_from.connected_cards.remove_child(card) #остоединяем о ткарты

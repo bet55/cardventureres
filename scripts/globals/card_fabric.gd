@@ -14,6 +14,7 @@ func add_connector(card, card_data):
 	connector.type = card_data.TYPE
 	connector.allowed_connectors = card_data.ALLOWED_CONNECTORS
 	connector.on_apply_effect = card_data.on_apply_effect
+	connector.on_remove_effect = card_data.on_remove_effect
 	card.add_child(connector)
 	card.connector = connector
 	card.card_layed_down.connect(Callable(connector, "_on_card_layed_down"))
@@ -50,11 +51,11 @@ func add_card_producer(card, card_data, signal_to_connect):
 
 
 func add_auto_main_effect(card, card_data, signal_to_connect):
-	var auto_main_effet = AUTO_MAIN_EFFECT_PATH.instantiate()
-	card.add_child(auto_main_effet)
-	card.auto_main_effet = auto_main_effet
+	var auto_main_effect = AUTO_MAIN_EFFECT_PATH.instantiate()
+	card.add_child(auto_main_effect)
+	card.auto_main_effet = auto_main_effect
 	if signal_to_connect != null:
-		signal_to_connect.connect(Callable(auto_main_effet, "use_main_effect"))
+		signal_to_connect.connect(Callable(auto_main_effect, "use_main_effect"))
 
 
 func add_crafter(card, card_data, signal_to_connect):
