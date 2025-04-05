@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bllkngkpxfxkm"]
 
-[ext_resource type="Script" uid="uid://bpyeml0vwqvxu" path="res://scripts/door.gd" id="1_83dcw"]
+[ext_resource type="Script" uid="uid://s6jqywur78e7" path="res://scripts/door.gd" id="1_83dcw"]
 [ext_resource type="Texture2D" uid="uid://dvly8v6sc3du7" path="res://sprites/door.png" id="2_la1wf"]
 [ext_resource type="PackedScene" uid="uid://hgxycof3aq14" path="res://scenes/connector.tscn" id="3_18pbm"]
 [ext_resource type="Texture2D" uid="uid://c0a5vgb7wnlh1" path="res://sprites/card_frame.png" id="4_la1wf"]
@@ -15,7 +15,7 @@ texture = ExtResource("2_la1wf")
 
 [node name="ConnectedCards" type="Node2D" parent="."]
 
-[node name="SlotHighlight" type="Sprite2D" parent="."]
+[node name="DoorHighlight" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("4_la1wf")
 

@@ -1,30 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://ywn83o2381r1"]
+[gd_scene load_steps=11 format=3 uid="uid://ywn83o2381r1"]
 
 [ext_resource type="Script" uid="uid://djwvaxm6movsr" path="res://scripts/fog_of_war_test.gd" id="1_oai28"]
-[ext_resource type="Texture2D" uid="uid://c0sjjc5yadrlw" path="res://assets/5zlkur1f7v931.png" id="2_1c618"]
+[ext_resource type="Texture2D" uid="uid://nhna5tux4d7p" path="res://assets/level_1_background.png" id="2_cbq0s"]
 [ext_resource type="PackedScene" uid="uid://cd27ykbtbi3gd" path="res://scenes/card_holder.tscn" id="3_303on"]
 [ext_resource type="PackedScene" uid="uid://bllkngkpxfxkm" path="res://scenes/door.tscn" id="3_dsvun"]
 [ext_resource type="PackedScene" uid="uid://5cowigden704" path="res://scenes/camera_follower.tscn" id="4_rwxyx"]
 [ext_resource type="PackedScene" uid="uid://dcs3ap031tvja" path="res://scenes/fog_of_war.tscn" id="5_goq00"]
+[ext_resource type="PackedScene" uid="uid://btfn4lnbltymk" path="res://scenes/chest.tscn" id="6_cbq0s"]
 [ext_resource type="PackedScene" uid="uid://b2av11hiwbaxq" path="res://scenes/bag.tscn" id="6_oermp"]
+[ext_resource type="PackedScene" uid="uid://bpvftdaflisum" path="res://scenes/one_way_tp.tscn" id="8_cvnev"]
+[ext_resource type="Texture2D" uid="uid://dcxw6r0ftpf44" path="res://assets/target_marker.png" id="9_cbq0s"]
 
 [node name="FogOfWarTest" type="Node2D"]
 script = ExtResource("1_oai28")
 
 [node name="Map" type="Sprite2D" parent="."]
-position = Vector2(-72, -956)
-texture = ExtResource("2_1c618")
-
-[node name="Map2" type="Sprite2D" parent="."]
-position = Vector2(-31, 1144)
-rotation = -3.14159
-texture = ExtResource("2_1c618")
+position = Vector2(261, -797)
+scale = Vector2(3, 3)
+texture = ExtResource("2_cbq0s")
 
 [node name="Door" parent="." instance=ExtResource("3_dsvun")]
 position = Vector2(-81, 61)
-scene_path = "uid://dqyih1vivibjv"
+scene_path = "res://scenes/test.tscn"
+
+[node name="OneWayTp" parent="." node_paths=PackedStringArray("destination_point") instance=ExtResource("8_cvnev")]
+position = Vector2(120, -494)
+destination_point = NodePath("target")
+
+[node name="target" type="Sprite2D" parent="OneWayTp"]
+position = Vector2(10, 340)
+texture = ExtResource("9_cbq0s")
+
+[node name="Chest" parent="." instance=ExtResource("6_cbq0s")]
+position = Vector2(-81, -701)
 
 [node name="CardHolder" parent="." instance=ExtResource("3_303on")]
+
+[node name="AllowedArea" type="Polygon2D" parent="."]
+color = Color(1, 0.490196, 1, 0.152941)
+polygon = PackedVector2Array(-31, -1629, -22, -1536, 40, -1490, 261, -1404, 296, -1215, 222, -1067, 192, -848, 366, -666, 383, -598, 295, -502, 263, -429, -27, -429, -50, -502, -166, -642, -164, -748, -130, -880, -164, -1025, -163, -1276, -201, -1350, -237, -1341, -254, -1170, -295, -1107, -288, -1015, -198, -879, -213, -687, -177, -392, -114, -291, -20, -254, 250, -276, 322, -304, 448, -138, 380, -76, 417, -7, 398, 57, 356, 106, 408, 194, 79, 321, 27, 231, -172, 189, -311, -15, -473, -47, -718, -139, -841, -246, -823, -384, -807, -556, -749, -642, -746, -825, -704, -888, -643, -927, -623, -996, -712, -1030, -770, -1094, -773, -1230, -662, -1302, -596, -1407, -575, -1539, -570, -1769, -340, -1898)
 
 [node name="FogOfWar" parent="." node_paths=PackedStringArray("camera", "fog") instance=ExtResource("5_goq00")]
 camera = NodePath("../CameraFollower")
@@ -36,11 +50,7 @@ reveal_radius_multi = 1.0
 
 [node name="Polygon2D" type="Polygon2D" parent="FogOfWar"]
 color = Color(1, 1, 1, 0)
-polygon = PackedVector2Array(-1189, 2247, -1229, -2114, 1069, -2064, 1039, 2301)
-
-[node name="AllowedArea" type="Polygon2D" parent="."]
-color = Color(1, 1, 1, 0)
-polygon = PackedVector2Array(465, -215, 352, -429, 795, -383, 883, -78, 611, 89, 97, 85, -28, 273, -262, 323, -692, 319, -771, 403, -989, 357, -943, 186, -667, 89, -208, 98, -15, -115, 285, -140, 498, -119, 649, -174)
+polygon = PackedVector2Array(-1209, 842, -1266, -2300, 1714, -2300, 1746, 875)
 
 [node name="CameraFollower" parent="." instance=ExtResource("4_rwxyx")]
 position = Vector2(81, -32)

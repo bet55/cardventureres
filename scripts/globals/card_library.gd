@@ -22,6 +22,7 @@ const CARD_IDS = {
 	070200: preload("uid://bio4qriayousr"), #curse skill data
 	080100: preload("uid://crl5wirrdi1ib"), #test mod data
 	090100: preload("uid://b3witcfp3y650"), #coin loot data
+	090200: preload("uid://dqqyhy6j41eca"), #key loot data 
 	110100: preload("uid://v5r7nalbhrit"), #loot pack data
 	
 }

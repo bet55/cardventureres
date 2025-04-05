@@ -76,8 +76,10 @@ func show_enlarged_sprite():
 		enlarged_sprite.texture = sprite.texture  # Используем ту же текстуру, что и у основного спрайта
 		enlarged_sprite.scale = ENLARGED_SCALE
 		# Позиционируем увеличенную копию по центру экрана
-		var viewport_size = get_viewport_rect().size
-		enlarged_sprite.global_position = viewport_size / 2
+		if get_viewport().get_camera_2d() != null:
+			enlarged_sprite.global_position = get_viewport().get_camera_2d().get_screen_center_position()
+		else:
+			enlarged_sprite.global_position = get_viewport_rect().get_center()
 
 
 func hide_enlarged_sprite():
@@ -213,9 +215,16 @@ func _input(event):
 				for area in step_on_fog_area.get_overlapping_areas(): #проверяем не наступаем ли мы на облочка
 					if area.get_parent().is_in_group("cloud"):
 						return_needed = true
+						print("dont step on fog")
 				if allowed_area != null: #если у нас есть зона, где можно ходить, проверяем ходим ли мы по ней
-					if !Geometry2D.is_point_in_polygon(global_position, allowed_area.polygon):
-						return_needed = true
+					var steps = 10  # Количество промежуточных точек для чека на перепрыгивание через запрет области
+					for i in range(steps + 1):
+						var t = float(i) / steps
+						var point = pick_up_position.lerp(global_position, t)
+						if !Geometry2D.is_point_in_polygon(point, allowed_area.polygon):
+							return_needed = true
+					#if !Geometry2D.is_point_in_polygon(global_position, allowed_area.polygon):
+						#return_needed = true
 				if return_needed:
 					var tween = create_tween() #возвращаемся назад если наступаем
 					tween.tween_property(self, "global_position", pick_up_position, 0.1)

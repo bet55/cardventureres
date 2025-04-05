@@ -4,9 +4,8 @@ extends Node2D
 
 @onready var connected_cards: Node2D = $ConnectedCards
 @onready var connector: Area2D = $Connector
-@onready var slot_highlight: Sprite2D = $SlotHighlight
+@onready var door_highlight: Sprite2D = $DoorHighlight
 
-#const TYPE = "door"
 const ALLOWED_CONNECTORS = [
 	"hero",
 ]
@@ -22,10 +21,10 @@ var card_type = "door"
 
 
 func switch_highlight():
-	if slot_highlight.visible:
-		slot_highlight.visible = false
+	if door_highlight.visible:
+		door_highlight.visible = false
 	else:
-		slot_highlight.visible = true
+		door_highlight.visible = true
 
 
 func _ready() -> void:

@@ -38,7 +38,7 @@ func add_card(card):
 
 
 func _ready() -> void:
-	close_spot = global_position
+	close_spot = get_parent().global_position + position
 	for card_id in GlobalStuff.cards_in_bag:
 		var new_card = CardFabric.create_card(card_id)
 		cards.add_child(new_card)
@@ -49,9 +49,11 @@ func _on_bag_button_pressed() -> void:
 	var tween = create_tween()
 	var destination = Vector2()
 	if is_open:
+		close_spot = get_parent().global_position + position + OPEN_OFFSET
 		is_open = false
 		destination = close_spot
 	else:
+		close_spot = get_parent().global_position + position
 		is_open = true
 		destination = close_spot - OPEN_OFFSET
 	tween.tween_property(self, "global_position", destination, OPEN_TIME).set_ease(Tween.EASE_OUT)

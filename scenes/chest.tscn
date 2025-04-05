@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://btfn4lnbltymk"]
+
+[ext_resource type="Script" uid="uid://bpyeml0vwqvxu" path="res://scripts/chest.gd" id="1_yhylo"]
+[ext_resource type="Texture2D" uid="uid://nds5yyk4enhf" path="res://sprites/chest.png" id="2_yhylo"]
+[ext_resource type="PackedScene" uid="uid://hgxycof3aq14" path="res://scenes/connector.tscn" id="3_w02o5"]
+[ext_resource type="Texture2D" uid="uid://c0a5vgb7wnlh1" path="res://sprites/card_frame.png" id="4_ilhio"]
+[ext_resource type="PackedScene" uid="uid://dop2e00vvy08q" path="res://scenes/card_producer.tscn" id="4_yhylo"]
+
+[node name="Chest" type="Node2D"]
+script = ExtResource("1_yhylo")
+
+[node name="ChestSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_yhylo")
+
+[node name="Connector" parent="." instance=ExtResource("3_w02o5")]
+
+[node name="CardProducer" parent="." instance=ExtResource("4_yhylo")]
+
+[node name="ConnectedCards" type="Node2D" parent="."]
+
+[node name="ChestHighlight" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_ilhio")
+
+[connection signal="child_entered_tree" from="ConnectedCards" to="." method="_on_connected_cards_child_entered_tree"]

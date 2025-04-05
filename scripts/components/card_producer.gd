@@ -4,7 +4,7 @@ const SCALE = Vector2(1.2, 1.2)
 const ANIMATION_TIME = 0.2
 var OFFSET_SCALE = 40
 
-var cards_to_produce = []
+var cards_to_produce# = []
 
 
 func play_produce_animation(card):

@@ -19,7 +19,7 @@ color = Color(0.0787413, 0.412921, 0.309677, 1)
 
 [node name="Door" parent="." instance=ExtResource("2_j5jx5")]
 position = Vector2(846, 86)
-scene_path = "uid://ywn83o2381r1"
+scene_path = "res://scenes/fog_of_war_test.tscn"
 
 [node name="Bag" parent="." instance=ExtResource("4_74lek")]
 position = Vector2(919, 401)
@@ -109,6 +109,13 @@ offset_right = 366.0
 offset_bottom = 536.0
 text = "weapon"
 
+[node name="Button12" type="Button" parent="."]
+offset_left = 369.0
+offset_top = 505.0
+offset_right = 404.0
+offset_bottom = 536.0
+text = "key"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
@@ -120,3 +127,4 @@ text = "weapon"
 [connection signal="pressed" from="Button9" to="." method="_on_button_9_pressed"]
 [connection signal="pressed" from="Button10" to="." method="_on_button_10_pressed"]
 [connection signal="pressed" from="Button11" to="." method="_on_button_11_pressed"]
+[connection signal="pressed" from="Button12" to="." method="_on_button_12_pressed"]

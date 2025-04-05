@@ -69,3 +69,10 @@ func _on_button_11_pressed() -> void:
 	card_holder.add_child(card)
 	card.global_position = get_viewport_rect().get_center()
 	card.last_pos = card.global_position
+
+
+func _on_button_12_pressed() -> void:
+	var card = CardFabric.create_card(090200)
+	card_holder.add_child(card)
+	card.global_position = get_viewport_rect().get_center()
+	card.last_pos = card.global_position
